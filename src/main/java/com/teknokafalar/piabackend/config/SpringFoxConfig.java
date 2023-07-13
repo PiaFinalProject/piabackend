@@ -1,4 +1,4 @@
-package com.teknokafalar.piabackend;
+package com.teknokafalar.piabackend.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
