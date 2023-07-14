@@ -1,5 +1,6 @@
 package com.teknokafalar.piabackend.service.concrete;
-
+import com.teknokafalar.piabackend.core.utilities.results.Result;
+import com.teknokafalar.piabackend.core.utilities.results.SuccessDataResult;
 import com.teknokafalar.piabackend.dto.AuthorPostRequest;
 import com.teknokafalar.piabackend.dto.AuthorResponse;
 import com.teknokafalar.piabackend.entities.Author;
@@ -21,6 +22,9 @@ public class AuthorServiceImpl implements AuthorService {
 
         Author author = AuthorMapperUtil.toAuthor(request);
         Author saveAuthor = repository.save(author);
+        return AuthorMapperUtil.toAuthorResponse(saveAuthor);
+    }
+=======
 
         return AuthorMapperUtil.toAuthorResponse(saveAuthor);
     }
