@@ -4,6 +4,7 @@ import com.teknokafalar.piabackend.core.utilities.results.DataResult;
 import com.teknokafalar.piabackend.core.utilities.results.ErrorDataResult;
 import com.teknokafalar.piabackend.core.utilities.results.Result;
 import com.teknokafalar.piabackend.core.utilities.results.SuccessDataResult;
+
 import com.teknokafalar.piabackend.dto.AuthorPostRequest;
 import com.teknokafalar.piabackend.dto.AuthorResponse;
 import com.teknokafalar.piabackend.entities.Author;
@@ -40,5 +41,13 @@ public class AuthorController {
         catch (Exception e ) {
             return new ErrorDataResult<>("not listed, return code");
         }
+    public ResponseEntity<?> save(@RequestBody AuthorPostRequest request){
+
+        return new ResponseEntity<>(request, HttpStatus.OK);
+    }
+    @GetMapping("/list")
+    public List<Author>getAuthor(){
+        System.out.println("deneme");
+        return service.getAuthor();
     }
 }

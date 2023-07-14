@@ -1,5 +1,4 @@
 package com.teknokafalar.piabackend.service.concrete;
-
 import com.teknokafalar.piabackend.core.utilities.results.Result;
 import com.teknokafalar.piabackend.core.utilities.results.SuccessDataResult;
 import com.teknokafalar.piabackend.dto.AuthorPostRequest;
@@ -25,6 +24,11 @@ public class AuthorServiceImpl implements AuthorService {
         Author saveAuthor = repository.save(author);
         return AuthorMapperUtil.toAuthorResponse(saveAuthor);
     }
+=======
+
+        return AuthorMapperUtil.toAuthorResponse(saveAuthor);
+    }
+
     @Override
     public List<Author> getAuthor() {
         return repository.findAll();
