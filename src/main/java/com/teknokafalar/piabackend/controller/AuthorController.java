@@ -33,21 +33,31 @@ public class AuthorController {
         }
     }
     @GetMapping("/list")
-    public DataResult<List<Author>>getAuthor(){
-        try{
+    public DataResult<List<Author>>getAuthor() {
+        try {
             System.out.println("deneme");
-            return new SuccessDataResult<>(this.service.getAuthor(),"all of listed author");
-        }
-        catch (Exception e ) {
+            return new SuccessDataResult<>(this.service.getAuthor(), "all of listed author");
+        } catch (Exception e) {
             return new ErrorDataResult<>("not listed, return code");
         }
-    public ResponseEntity<?> save(@RequestBody AuthorPostRequest request){
 
-        return new ResponseEntity<>(request, HttpStatus.OK);
     }
-    @GetMapping("/list")
-    public List<Author>getAuthor(){
-        System.out.println("deneme");
-        return service.getAuthor();
+    @PutMapping("/update")
+    public Result updateAuthor(@RequestBody AuthorPostRequest request,@RequestParam Long authorId) {
+        try {
+            return new SuccessDataResult<>(this.service.updateAuthor(request, authorId),"updated author" );
+        }
+        catch (Exception e) {
+            return new SuccessDataResult<>("not added, return code");
+        }
+    }
+    @DeleteMapping("/delete")
+    public Result deleteAuthor(@RequestParam Long authorId) {
+        try {
+            return new SuccessDataResult<>(this.service.deleteAuthor(authorId),"delete author" );
+        }
+        catch (Exception e) {
+            return new SuccessDataResult<>("not delete, return code");
+        }
     }
 }

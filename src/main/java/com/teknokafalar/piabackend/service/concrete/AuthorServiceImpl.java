@@ -1,6 +1,4 @@
 package com.teknokafalar.piabackend.service.concrete;
-import com.teknokafalar.piabackend.core.utilities.results.Result;
-import com.teknokafalar.piabackend.core.utilities.results.SuccessDataResult;
 import com.teknokafalar.piabackend.dto.AuthorPostRequest;
 import com.teknokafalar.piabackend.dto.AuthorResponse;
 import com.teknokafalar.piabackend.entities.Author;
@@ -11,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,13 +23,37 @@ public class AuthorServiceImpl implements AuthorService {
         Author saveAuthor = repository.save(author);
         return AuthorMapperUtil.toAuthorResponse(saveAuthor);
     }
-=======
 
-        return AuthorMapperUtil.toAuthorResponse(saveAuthor);
-    }
 
     @Override
     public List<Author> getAuthor() {
         return repository.findAll();
+    }
+
+    @Override
+    public AuthorResponse updateAuthor(AuthorPostRequest request, Long authorId) {
+        Optional<Author> authorDb = this.repository.findById(authorId);
+
+        Author author = authorDb.get();
+
+        if (authorDb.isPresent()) {
+            author.setAbout(request.getAbout());
+            author.setLastName(request.getLastName());
+            author.setBirthday(request.getBirthday());
+            author.setFirstName(request.getFirstName());
+        }
+        repository.save(author);
+
+        return AuthorMapperUtil.toAuthorResponse(author);
+    }
+
+    public AuthorResponse deleteAuthor(Long authorId) {
+        Optional<Author> authorDb = this.repository.findById(authorId);
+
+        Author author = authorDb.get();
+
+       this.repository.deleteById(authorId);
+
+        return AuthorMapperUtil.toAuthorResponse(author);
     }
 }
