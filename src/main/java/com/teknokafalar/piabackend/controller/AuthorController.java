@@ -20,11 +20,11 @@ public class AuthorController {
     @PostMapping("/save")
     public ResponseEntity<?> save(@RequestBody AuthorPostRequest request){
 
-        return new ResponseEntity<>("added", HttpStatus.OK);
+        return new ResponseEntity<>(request, HttpStatus.OK);
     }
     @GetMapping("/list")
     public List<Author>getAuthor(){
-
+        System.out.println("deneme");
         return service.getAuthor();
     }
 }
