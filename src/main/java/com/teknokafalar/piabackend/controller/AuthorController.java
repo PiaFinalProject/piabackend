@@ -24,7 +24,7 @@ public class AuthorController {
     }
     @GetMapping("/list")
     public List<Author>getAuthor(){
-
+        System.out.println("deneme");
         return service.getAuthor();
     }
 }
