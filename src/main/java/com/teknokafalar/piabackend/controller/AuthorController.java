@@ -20,7 +20,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/author")
 @RequiredArgsConstructor
-
 public class AuthorController {
     private final AuthorService service;
     @PostMapping("/save")
@@ -29,25 +28,20 @@ public class AuthorController {
             return new SuccessDataResult<>(this.service.postAuthor(request),"added author" );
         }
         catch (Exception e) {
+            e.getMessage();
             return new SuccessDataResult<>("not added, return code");
         }
     }
     @GetMapping("/list")
-    public DataResult<List<Author>>getAuthor(){
-        try{
+    public DataResult<List<Author>> getAuthor() {
+
+        try {
             System.out.println("deneme");
-            return new SuccessDataResult<>(this.service.getAuthor(),"all of listed author");
-        }
-        catch (Exception e ) {
+            return new SuccessDataResult<>(this.service.getAuthor(), "all of listed author");
+        } catch (Exception e) {
             return new ErrorDataResult<>("not listed, return code");
         }
-    public ResponseEntity<?> save(@RequestBody AuthorPostRequest request){
 
-        return new ResponseEntity<>(request, HttpStatus.OK);
     }
-    @GetMapping("/list")
-    public List<Author>getAuthor(){
-        System.out.println("deneme");
-        return service.getAuthor();
-    }
+
 }
