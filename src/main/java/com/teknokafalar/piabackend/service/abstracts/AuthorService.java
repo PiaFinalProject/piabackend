@@ -10,6 +10,6 @@ public interface AuthorService {
    AuthorResponse postAuthor(AuthorPostRequest request);
    List<Author>getAuthor();
    AuthorResponse updateAuthor(AuthorPostRequest request, Long authorId);
-   public AuthorResponse deleteAuthor(Long authorId) ;
+   AuthorResponse deleteAuthor(Long authorId) ;
 
-   }
+}

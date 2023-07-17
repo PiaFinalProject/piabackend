@@ -35,9 +35,11 @@ public class AuthorController {
     @GetMapping("/list")
     public DataResult<List<Author>>getAuthor() {
         try {
-            System.out.println("deneme");
+
             return new SuccessDataResult<>(this.service.getAuthor(), "all of listed author");
+
         } catch (Exception e) {
+
             return new ErrorDataResult<>("not listed, return code");
         }
 
