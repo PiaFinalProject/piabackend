@@ -18,7 +18,6 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public AuthorResponse postAuthor(AuthorPostRequest request) {
-
         Author author = AuthorMapperUtil.toAuthor(request);
         Author saveAuthor = repository.save(author);
         return AuthorMapperUtil.toAuthorResponse(saveAuthor);
