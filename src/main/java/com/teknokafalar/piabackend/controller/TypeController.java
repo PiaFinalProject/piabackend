@@ -23,7 +23,7 @@ public class TypeController {
             return new SuccessDataResult<>(this.service.postType(request),"added type");
         }
         catch (Exception e) {
-            return new SuccessDataResult<>("not added, return code");
+            return new ErrorDataResult<>(false,"not added, return code");
         }
     }
     @GetMapping("/list")
@@ -34,7 +34,7 @@ public class TypeController {
 
         }
         catch (Exception e) {
-            return new ErrorDataResult<>("not listed, return code");
+            return new ErrorDataResult<>(false,"not listed, return code");
         }
     }
     @PutMapping("/update")
@@ -43,7 +43,7 @@ public class TypeController {
             return new SuccessDataResult<>(this.service.updateType(request, typeId), "update type");
         }
         catch (Exception e) {
-            return new SuccessDataResult<>("not added, rerturn code");
+            return new ErrorDataResult<>(false,"not added, rerturn code");
         }
     }
 
@@ -52,7 +52,7 @@ public class TypeController {
             return new SuccessDataResult<>(this.service.deleteType(typeId), "delete type");
         }
         catch (Exception e) {
-            return new SuccessDataResult<>("not delete, return code");
+            return new SuccessDataResult<>(false,"not delete, return code");
         }
     }
 }

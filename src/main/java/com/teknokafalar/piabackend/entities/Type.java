@@ -1,14 +1,15 @@
 package com.teknokafalar.piabackend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","book"})
+
 public class Type {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

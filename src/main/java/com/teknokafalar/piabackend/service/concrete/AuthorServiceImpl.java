@@ -43,7 +43,6 @@ public class AuthorServiceImpl implements AuthorService {
             author.setFirstName(request.getFirstName());
         }
         repository.save(author);
-
         return AuthorMapperUtil.toAuthorResponse(author);
     }
 
