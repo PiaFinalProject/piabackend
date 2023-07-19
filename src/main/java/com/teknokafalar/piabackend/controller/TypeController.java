@@ -23,7 +23,7 @@ public class TypeController {
             return new SuccessDataResult<>(this.service.postType(request),"added type");
         }
         catch (Exception e) {
-            return new ErrorDataResult<>(false,"not added, return code");
+            return new SuccessDataResult<>("not added, return code");
         }
     }
     @GetMapping("/list")
@@ -46,7 +46,7 @@ public class TypeController {
             return new ErrorDataResult<>(false,"not added, rerturn code");
         }
     }
-
+    @DeleteMapping("/delete")
     public Result deleteType(@RequestParam Long typeId) {
         try {
             return new SuccessDataResult<>(this.service.deleteType(typeId), "delete type");
