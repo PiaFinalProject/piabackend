@@ -19,15 +19,12 @@ public class BookController {
     private final BookService service;
     @PostMapping("/save")
     public Result postBook(@RequestBody BookRequest request) {
-        return new SuccessDataResult<>(this.service.postBook(request),"added author" );
-
-
+        return new SuccessDataResult<>(this.service.postBook(request),"added books" );
     }
-
     @GetMapping("/list")
 
     public DataResult<List<Book>> getBook() {
-        return new SuccessDataResult<>(this.service.getBook(), "all of listed author");
+        return new SuccessDataResult<>(this.service.getBook(), "all of listed books");
 
         /*ry {
 

@@ -3,8 +3,11 @@ package com.teknokafalar.piabackend.controller;
 import com.teknokafalar.piabackend.dto.response.ResponseMessage;
 import com.teknokafalar.piabackend.entities.Author;
 import com.teknokafalar.piabackend.service.abstracts.AuthorService;
+import com.teknokafalar.piabackend.service.abstracts.BookService;
 import com.teknokafalar.piabackend.service.concrete.AuthorExcelHelper;
+import com.teknokafalar.piabackend.service.concrete.BooksExcelHelper;
 import com.teknokafalar.piabackend.service.concrete.ExcelService;
+import com.teknokafalar.piabackend.service.concrete.TypeExcelHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,15 +27,18 @@ public class ExcelController {
     ExcelService fileService;
     @Autowired
     AuthorService authorService;
+    @Autowired
+    BookService bookService;
 
     @PostMapping("/upload")
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
         String message = "";
 
-        if (AuthorExcelHelper.hasExcelFormat(file)) {
+        if (TypeExcelHelper.hasExcelFormat(file)) {
             try {
-                fileService.saveAuthors(file);
-                fileService.saveTypes(file);
+   //   fileService.saveAuthors(file);
+    //fileService.saveTypes(file);
+        fileService.saveBooks(file);
 
                 message = "Uploaded the file successfully: " + file.getOriginalFilename();
                 return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));

@@ -64,8 +64,6 @@ public class TypeExcelHelper {
                         case 1:
                             type.setName(currentCell.getStringCellValue());
                             break;
-
-
                         default:
                             break;
                     }

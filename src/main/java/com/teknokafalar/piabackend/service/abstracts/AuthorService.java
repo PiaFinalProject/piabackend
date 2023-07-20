@@ -9,6 +9,8 @@ import java.util.List;
 public interface AuthorService {
    AuthorResponse postAuthor(AuthorPostRequest request);
    List<Author>getAuthor();
+
+   Author getAuthorById(Long authorId);
    AuthorResponse updateAuthor(AuthorPostRequest request, Long authorId);
    AuthorResponse deleteAuthor(Long authorId) ;
 

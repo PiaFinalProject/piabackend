@@ -1,11 +1,17 @@
 package com.teknokafalar.piabackend.service.concrete;
 
+import com.teknokafalar.piabackend.entities.Author;
 import com.teknokafalar.piabackend.entities.Book;
+import com.teknokafalar.piabackend.entities.Type;
+import com.teknokafalar.piabackend.service.abstracts.AuthorService;
+import com.teknokafalar.piabackend.service.abstracts.TypeService;
+import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -14,11 +20,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+@RequiredArgsConstructor
+@Component
 public class BooksExcelHelper {
     public static String TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-    static String[] HEADERs = {"id", "name", "author", "bookSummary", "type", "year", "images", "stock", "price"};
+    static String[] HEADERs = {"id", "name", "authorId", "bookSummary", "typeId", "year", "imagesUrl", "stock", "price","publisher"};
     static String SHEET = "Books";
 
+    private final AuthorService authorService;
+    private final TypeService typeService;
     public static boolean hasExcelFormat(MultipartFile file) {
 
         if (!TYPE.equals(file.getContentType())) {
@@ -28,7 +38,7 @@ public class BooksExcelHelper {
         return true;
     }
 
-    public static List<Book> excelToBooks(InputStream is) {
+    public  List<Book> excelToBooks(InputStream is) {
         try {
             Workbook workbook = new XSSFWorkbook(is);
 
@@ -64,17 +74,42 @@ public class BooksExcelHelper {
                             break;
 
                         case 2:
-                            //   book.(currentCell.getStringCellValue());
+                            Author authorById = authorService.getAuthorById((long) currentCell.getNumericCellValue());
+                            book.setAuthor(authorById);
                             break;
 
                         case 3:
+                            book.setBookSummary(currentCell.getStringCellValue());
                             // author.setAbout((currentCell.getStringCellValue()));
                             break;
 
                         case 4:
-                            //author.setImages((currentCell.getStringCellValue()));
+                            //type
+                            Type typeById = typeService.getTypeById((long) currentCell.getNumericCellValue());
+                            book.setType(typeById);
                             break;
 
+                        case 5:
+                            //year
+                            book.setYear(String.valueOf(currentCell.getNumericCellValue()));
+                            break;
+
+                        case 6:
+                            //imagesurl
+                            book.setImagesUrl(currentCell.getStringCellValue());
+                            break;
+                        case 7:
+                            //STOCK
+                            book.setStock(currentCell.getNumericCellValue());
+                            break;
+                        case 8:
+                            //price
+                            book.setPrice(currentCell.getNumericCellValue());
+                            break;
+                        case 9:
+                            //price
+                            book.setPublisher(currentCell.getStringCellValue());
+                            break;
                         default:
                             break;
                     }
@@ -83,14 +118,14 @@ public class BooksExcelHelper {
                 }
 
                 //authors.add(author);
+                books.add(book);
             }
 
             workbook.close();
 
-            //return authors;
+            return books;
         } catch (IOException e) {
             throw new RuntimeException("fail to parse Excel file: " + e.getMessage());
         }
-        return null;
     }
 }

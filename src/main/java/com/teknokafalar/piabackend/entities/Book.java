@@ -15,24 +15,26 @@ public class Book {
 
 
     private String name;
-
-    private String year;
-    @Lob
-    @org.hibernate.annotations.Type(type = "org.hibernate.type.TextType")
-    private String bookSummary;
-
-    private String publisher;
-
-    private String imagesUrl;
-
-    private double price;
-    private double stock;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "authorId", nullable = true)
     private Author author;
 
+    @Lob
+    @org.hibernate.annotations.Type(type = "org.hibernate.type.TextType")
+    private String bookSummary;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "typeId", nullable = true)
     private Type type;
+    private String year;
+    private String imagesUrl;
+
+    private double stock;
+
+    private double price;
+    private String publisher;
+
+
+
+
 }

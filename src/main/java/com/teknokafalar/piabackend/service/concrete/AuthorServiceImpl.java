@@ -31,6 +31,11 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
+    public Author getAuthorById(Long authorId) {
+        return repository.findById(authorId).get();
+    }
+
+    @Override
     public AuthorResponse updateAuthor(AuthorPostRequest request, Long authorId) {
         Optional<Author> authorDb = this.repository.findById(authorId);
 
