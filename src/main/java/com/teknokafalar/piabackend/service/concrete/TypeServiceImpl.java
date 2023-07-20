@@ -41,24 +41,27 @@ public class TypeServiceImpl implements TypeService {
     @Override
     public TypeResponse updateType(TypePostRequest request, Long typeId) {
         Optional<Type> typeDb = this.repository.findById(typeId);
-        Type type= null;
 
-        if (typeDb.isPresent()) {
-            type = typeDb.get();
+        Type type= typeDb.get();
+
+        if (typeDb.isPresent())
             type.setName(request.getName());
-        }
+
+
         repository.save(type);
 
         return TypeMapperUtil.toTypeResponse(type);
     }
 
-    @Override
+
     public TypeResponse deleteType(Long typeId) {
-        Type typeDb = this.repository.findById(typeId).orElse(null);
+        Optional<Type>typeDb = this.repository.findById(typeId);
+
+        Type type = typeDb.get();
 
         this.repository.deleteById(typeId);
 
-        return TypeMapperUtil.toTypeResponse(typeDb);
+        return TypeMapperUtil.toTypeResponse(type);
     }
 
 }

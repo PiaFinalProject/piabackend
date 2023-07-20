@@ -58,8 +58,8 @@ public class SecurityConfig {
                                 .antMatchers("/users/**").permitAll()
                                 .antMatchers("/order/**").permitAll()
                                 .antMatchers("/api/**").permitAll()
-
-
+                                .antMatchers("/subscriber/**").permitAll()
+                                .antMatchers("/message/**").permitAll()
                                 .antMatchers(AUTH_WHITE_LIST).permitAll()
                                 .anyRequest().authenticated()
                 )

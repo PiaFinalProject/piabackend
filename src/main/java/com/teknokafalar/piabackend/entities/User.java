@@ -10,7 +10,7 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "users" )
+@Table(name = "users")
 public class User {
 
     @Id
@@ -21,7 +21,6 @@ public class User {
     private String email;
     private String password;
 
-
     @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
     private Cart cart;
 
@@ -30,6 +29,7 @@ public class User {
     private List<Order> orders;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
