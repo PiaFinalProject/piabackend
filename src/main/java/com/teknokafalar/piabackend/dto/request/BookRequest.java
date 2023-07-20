@@ -1,11 +1,15 @@
-package com.teknokafalar.piabackend.dto;
+package com.teknokafalar.piabackend.dto.request;
 
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
-public class BookPostRequest {
+public class BookRequest {
+
+    private double price;
+    private double stock;
+
     private String name;
 
     private String year;

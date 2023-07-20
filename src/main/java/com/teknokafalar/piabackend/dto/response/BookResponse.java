@@ -1,4 +1,4 @@
-package com.teknokafalar.piabackend.dto;
+package com.teknokafalar.piabackend.dto.response;
 
 import lombok.Data;
 
@@ -6,7 +6,8 @@ import java.util.Date;
 
 @Data
 public class BookResponse {
-    private Long id;
+    private double price;
+    private double stock;
 
     private String name;
 

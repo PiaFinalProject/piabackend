@@ -12,4 +12,6 @@ public interface CommentService {
 
     CommentResponse postComment(CommentPostRequest comment);
 
+    List<CommentResponse> getCommentsByBookId(Long bookId);
+
 }

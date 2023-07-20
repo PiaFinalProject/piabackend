@@ -1,8 +1,11 @@
 package com.teknokafalar.piabackend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -18,7 +21,15 @@ public class User {
     private String email;
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+    private Cart cart;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Order> orders;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))

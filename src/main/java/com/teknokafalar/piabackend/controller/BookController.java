@@ -4,12 +4,9 @@ import com.teknokafalar.piabackend.core.utilities.results.DataResult;
 import com.teknokafalar.piabackend.core.utilities.results.ErrorDataResult;
 import com.teknokafalar.piabackend.core.utilities.results.Result;
 import com.teknokafalar.piabackend.core.utilities.results.SuccessDataResult;
-import com.teknokafalar.piabackend.dto.AuthorPostRequest;
 import com.teknokafalar.piabackend.dto.BookPostRequest;
 import com.teknokafalar.piabackend.dto.BookResponse;
-import com.teknokafalar.piabackend.entities.Author;
 import com.teknokafalar.piabackend.entities.Book;
-import com.teknokafalar.piabackend.service.abstracts.AuthorService;
 import com.teknokafalar.piabackend.service.abstracts.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/book")
+@CrossOrigin("*")
 public class BookController {
     private final BookService service;
     @PostMapping("/save")
@@ -31,14 +29,9 @@ public class BookController {
 
     @GetMapping("/list")
     public DataResult<List<Book>> getBook() {
-        try {
 
-            return new SuccessDataResult<>(this.service.getBook(), "all of listed author");
+        return new SuccessDataResult<>(this.service.getBook(), "all of listed author");
 
-        } catch (Exception e) {
-
-            return new ErrorDataResult<>("not listed, return code");
-        }
     }
     @GetMapping("/Slist")
     public DataResult<List<Book>> getLastBook() {

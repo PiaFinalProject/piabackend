@@ -1,7 +1,7 @@
 package com.teknokafalar.piabackend.util;
 
-import com.teknokafalar.piabackend.dto.TypePostRequest;
-import com.teknokafalar.piabackend.dto.TypeResponse;
+import com.teknokafalar.piabackend.dto.request.TypePostRequest;
+import com.teknokafalar.piabackend.dto.response.TypeResponse;
 import com.teknokafalar.piabackend.entities.Type;
 
 public class TypeMapperUtil {

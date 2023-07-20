@@ -24,7 +24,7 @@ public class BookMapperUtil {
     private final  AuthorRepository authorRepository;
     private final TypeRepository typeRepository;
 
-    public Book toBook(BookPostRequest request) {
+    public Book toBook(BookPostRequest bookRequest) {
         Author authorOptional = authorRepository.findById(request.getAuthorId()).get();
         Type typeOptional = typeRepository.findById(request.getTypeId()).get();
 
@@ -33,15 +33,20 @@ public class BookMapperUtil {
         Type type = typeOptional;
 
         Book book = new Book();
-        book.setName(request.getName());
-        book.setYear(request.getYear());
-        book.setBookSummary(request.getBookSummary());
-        book.setPublisher(request.getPublisher());
-        book.setImagesUrl(request.getImagesUrl());
-        book.setAuthor(author);
-        book.setType(type);
-        book.setAddedDate(LocalDateTime.now());
-
+        book.setPrice(bookRequest.getPrice());
+        book.setStock(bookRequest.getStock());
+        book.setName(bookRequest.getName());
+        book.setBookSummary(bookRequest.getBookSummary());
+        book.setPublisher(bookRequest.getPublisher());
+        book.setImagesUrl(bookRequest.getImagesUrl());
+        Optional<Author> authorOptional = authorRepository.findById(bookRequest.getAuthorId());
+        if (authorOptional.isPresent()) {
+            book.setAuthor(authorOptional.get());
+        }
+        Optional<Type> typeOptional = typeRepository.findById(bookRequest.getTypeId());
+        if (typeOptional.isPresent()) {
+            book.setType(typeOptional.get());
+        }
         return book;
     }
 
