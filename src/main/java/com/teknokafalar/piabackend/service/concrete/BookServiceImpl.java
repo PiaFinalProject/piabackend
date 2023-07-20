@@ -33,6 +33,7 @@ public class BookServiceImpl implements BookService {
     public List<Book> getLastBook() {
         return this.bookRepository.findAll()
                 .stream().sorted(Comparator.comparing(Book::getAddedDate).reversed()).collect(Collectors.toList());
+
     }
 
     @Override

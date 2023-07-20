@@ -5,6 +5,7 @@ import lombok.Data;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+
 @Data
 public class BookRequest {
 
@@ -23,5 +24,6 @@ public class BookRequest {
     private Long authorId;
     private Long typeId;
     private LocalDateTime addedDate;
+
 
 }

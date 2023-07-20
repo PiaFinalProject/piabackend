@@ -24,6 +24,7 @@ public class BookController {
         BookResponse bookResponse = this.service.postBook(request);
         System.out.println(request);
         return ResponseEntity.ok().body(new SuccessDataResult<>(bookResponse, "added books"));
+
     }
 
     @GetMapping("/list")
@@ -40,7 +41,6 @@ public class BookController {
     @GetMapping("/Slist")
     public DataResult<List<Book>> getLastBook() {
         try {
-
             return new SuccessDataResult<>(this.service.getLastBook(), "all of listed author");
 
         } catch (Exception e) {
@@ -68,3 +68,4 @@ public class BookController {
         }
     }
 }
+

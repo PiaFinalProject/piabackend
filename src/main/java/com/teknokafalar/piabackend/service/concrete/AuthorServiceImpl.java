@@ -52,7 +52,7 @@ public class AuthorServiceImpl implements AuthorService {
         }
         throw new RuntimeException("cannot update null value");
     }
-
+    @Override
     public AuthorResponse deleteAuthor(Long authorId) {
         Optional<Author> authorDb = this.repository.findById(authorId);
 
