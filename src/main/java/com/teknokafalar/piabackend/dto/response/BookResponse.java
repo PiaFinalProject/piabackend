@@ -2,6 +2,8 @@ package com.teknokafalar.piabackend.dto.response;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 public class BookResponse {
     private double price;
@@ -18,4 +20,6 @@ public class BookResponse {
     private String imagesUrl;
     private Long authorId;
     private Long typeId;
+    private LocalDateTime addedDate;
+
 }

@@ -10,6 +10,7 @@ import com.teknokafalar.piabackend.repository.TypeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -28,6 +29,7 @@ public class BookMapperUtil {
         book.setBookSummary(bookRequest.getBookSummary());
         book.setPublisher(bookRequest.getPublisher());
         book.setImagesUrl(bookRequest.getImagesUrl());
+        book.setAddedDate(LocalDateTime.now());
         Optional<Author> authorOptional = authorRepository.findById(bookRequest.getAuthorId());
         if (authorOptional.isPresent()) {
             book.setAuthor(authorOptional.get());

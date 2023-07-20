@@ -4,6 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -33,6 +34,7 @@ public class Book {
 
     private double price;
     private String publisher;
+    private LocalDateTime addedDate;
 
 
 

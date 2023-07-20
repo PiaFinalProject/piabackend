@@ -1,12 +1,15 @@
 package com.teknokafalar.piabackend.controller;
 
 import com.teknokafalar.piabackend.core.utilities.results.DataResult;
+import com.teknokafalar.piabackend.core.utilities.results.ErrorDataResult;
 import com.teknokafalar.piabackend.core.utilities.results.Result;
 import com.teknokafalar.piabackend.core.utilities.results.SuccessDataResult;
 import com.teknokafalar.piabackend.dto.request.BookRequest;
+import com.teknokafalar.piabackend.dto.response.BookResponse;
 import com.teknokafalar.piabackend.entities.Book;
 import com.teknokafalar.piabackend.service.abstracts.BookService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,34 +17,54 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/book")
-@CrossOrigin("*")
 public class BookController {
     private final BookService service;
     @PostMapping("/save")
-    public Result postBook(@RequestBody BookRequest request) {
-        return new SuccessDataResult<>(this.service.postBook(request),"added books" );
+    public ResponseEntity<?> postBook(@RequestBody BookRequest request) {
+        BookResponse bookResponse = this.service.postBook(request);
+        System.out.println(request);
+        return ResponseEntity.ok().body(new SuccessDataResult<>(bookResponse, "added books"));
     }
+
     @GetMapping("/list")
-
     public DataResult<List<Book>> getBook() {
-        return new SuccessDataResult<>(this.service.getBook(), "all of listed books");
+        try {
 
-        /*ry {
-
+            return new SuccessDataResult<>(this.service.getBook(), "all of listed author");
 
         } catch (Exception e) {
 
             return new ErrorDataResult<>("not listed, return code");
-        }*/
+        }
+    }
+    @GetMapping("/Slist")
+    public DataResult<List<Book>> getLastBook() {
+        try {
+
+            return new SuccessDataResult<>(this.service.getLastBook(), "all of listed author");
+
+        } catch (Exception e) {
+
+            return new ErrorDataResult<>("not listed, return code");
+        }
 
     }
-
     @PutMapping("/update")
     public Result updateBook(@RequestBody BookRequest request, @RequestParam Long bookId) {
-        System.out.println(request);
-        return new SuccessDataResult<>(this.service.updateBook(request, bookId), "updated book");
+        try {
+            return new SuccessDataResult<>(this.service.updateBook(request, bookId),"updated book" );
+        }
+        catch (Exception e) {
+            return new SuccessDataResult<>("not updated, return code");
+        }
     }
-
-
-
+    @DeleteMapping("/delete")
+    public Result deleteBook(@RequestParam Long bookId) {
+        try {
+            return new SuccessDataResult<>(this.service.deleteBook(bookId), "deleted book");
+        }
+        catch (Exception e) {
+            return new SuccessDataResult<>("not deleted, return code");
+        }
+    }
 }
