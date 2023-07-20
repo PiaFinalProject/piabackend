@@ -14,8 +14,10 @@ import com.teknokafalar.piabackend.util.TypeMapperUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +29,11 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> getBook() {
-        return this.bookRepository.findAll();
+        return this.bookRepository.findAll().stream().sorted(Comparator.comparing(Book:: getId)).collect(Collectors.toList());
+    }
+    public List<Book> getLastBook() {
+         return this.bookRepository.findAll()
+                 .stream().sorted(Comparator.comparing(Book::getAddedDate).reversed()).collect(Collectors.toList());
     }
     @Override
     public BookResponse postBook(BookPostRequest request) {
@@ -35,6 +41,7 @@ public class BookServiceImpl implements BookService {
         Book saveBook = bookRepository.save(book);
         return BookMapperUtil.toBookResponse(saveBook);
     }
+
     @Override
     public BookResponse updateBook(BookPostRequest request, Long bookId) {
 

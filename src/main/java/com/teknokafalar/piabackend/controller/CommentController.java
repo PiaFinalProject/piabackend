@@ -4,7 +4,7 @@ import com.teknokafalar.piabackend.core.utilities.results.DataResult;
 import com.teknokafalar.piabackend.core.utilities.results.Result;
 import com.teknokafalar.piabackend.core.utilities.results.SuccessDataResult;
 import com.teknokafalar.piabackend.dto.CommentPostRequest;
-import com.teknokafalar.piabackend.dto.CommentPostRequst;
+import com.teknokafalar.piabackend.dto.CommentPostRequest;
 import com.teknokafalar.piabackend.entities.Comment;
 import com.teknokafalar.piabackend.service.abstracts.CommentService;
 import lombok.RequiredArgsConstructor;

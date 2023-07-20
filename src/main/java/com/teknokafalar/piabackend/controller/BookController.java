@@ -30,7 +30,6 @@ public class BookController {
     }
 
     @GetMapping("/list")
-
     public DataResult<List<Book>> getBook() {
         try {
 
@@ -40,11 +39,35 @@ public class BookController {
 
             return new ErrorDataResult<>("not listed, return code");
         }
+    }
+    @GetMapping("/Slist")
+    public DataResult<List<Book>> getLastBook() {
+        try {
+
+            return new SuccessDataResult<>(this.service.getLastBook(), "all of listed author");
+
+        } catch (Exception e) {
+
+            return new ErrorDataResult<>("not listed, return code");
+        }
 
     }
     @PutMapping("/update")
     public Result updateBook(@RequestBody BookPostRequest request,@RequestParam Long bookId) {
-        System.out.println(request);
+        try {
             return new SuccessDataResult<>(this.service.updateBook(request, bookId),"updated book" );
+        }
+        catch (Exception e) {
+            return new SuccessDataResult<>("not updated, return code");
+        }
+    }
+    @DeleteMapping("/delete")
+    public Result deleteBook(@RequestParam Long bookId) {
+        try {
+            return new SuccessDataResult<>(this.service.deleteBook(bookId), "deleted book");
+        }
+        catch (Exception e) {
+            return new SuccessDataResult<>("not deleted, return code");
+        }
     }
 }

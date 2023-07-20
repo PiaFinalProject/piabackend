@@ -2,6 +2,8 @@ package com.teknokafalar.piabackend.dto;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class BookResponse {
     private Long id;
@@ -17,4 +19,5 @@ public class BookResponse {
     private String imagesUrl;
     private Long authorId;
     private Long typeId;
+    private Date addedDate;
 }

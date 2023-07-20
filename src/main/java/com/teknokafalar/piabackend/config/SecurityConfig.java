@@ -60,6 +60,8 @@ public class SecurityConfig {
                                 .antMatchers("/type/**").permitAll()
                                 .antMatchers("/subscriber/**").permitAll()
                                 .antMatchers("/message/**").permitAll()
+                                .antMatchers("/comment/**").permitAll()
+                                .antMatchers("/book/**").permitAll()
                                 .antMatchers(AUTH_WHITE_LIST).permitAll()
                                 .anyRequest().authenticated()
                 )

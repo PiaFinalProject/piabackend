@@ -34,18 +34,20 @@ public class AuthorServiceImpl implements AuthorService {
     public AuthorResponse updateAuthor(AuthorPostRequest request, Long authorId) {
         Optional<Author> authorDb = this.repository.findById(authorId);
 
-        Author author = authorDb.get();
+        Author author;
 
         if (authorDb.isPresent()) {
+            author = authorDb.get();
             author.setAbout(request.getAbout());
             author.setLastName(request.getLastName());
             author.setBirthday(request.getBirthday());
             author.setFirstName(request.getFirstName());
+            repository.save(author);
+            return AuthorMapperUtil.toAuthorResponse(author);
         }
-        repository.save(author);
-        return AuthorMapperUtil.toAuthorResponse(author);
+        throw new RuntimeException("cannot update null value");
     }
-
+    @Override
     public AuthorResponse deleteAuthor(Long authorId) {
         Optional<Author> authorDb = this.repository.findById(authorId);
 

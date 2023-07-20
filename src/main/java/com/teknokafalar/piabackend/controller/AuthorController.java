@@ -28,7 +28,6 @@ public class AuthorController {
         }
     }
     @GetMapping("/list")
-
     public DataResult<List<Author>> getAuthor() {
         try {
 
@@ -57,7 +56,5 @@ public class AuthorController {
         catch (Exception e) {
             return new SuccessDataResult<>("not deleted, return code");
         }
-
     }
-
 }

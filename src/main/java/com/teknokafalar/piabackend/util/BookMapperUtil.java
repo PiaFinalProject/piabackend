@@ -13,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Optional;
 
 
@@ -38,6 +40,7 @@ public class BookMapperUtil {
         book.setImagesUrl(request.getImagesUrl());
         book.setAuthor(author);
         book.setType(type);
+        book.setAddedDate(LocalDateTime.now());
 
         return book;
     }
