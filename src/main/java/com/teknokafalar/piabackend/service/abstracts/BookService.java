@@ -8,8 +8,9 @@ import java.util.List;
 
 public interface BookService {
     List<Book> getBook();
-    List<Book> getLastBook();
-    BookResponse postBook(BookPostRequest request);
-    BookResponse updateBook(BookPostRequest request, Long bookId);
+    List<Book>getLastBook();
+    BookResponse postBook(BookRequest request);
+    BookResponse updateBook(BookRequest request, Long bookId);
+
     BookResponse deleteBook(Long bookId) ;
 }

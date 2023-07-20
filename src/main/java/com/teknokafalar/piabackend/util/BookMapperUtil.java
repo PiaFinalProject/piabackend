@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.util.Date;
+
 import java.util.Optional;
 
 
@@ -39,6 +39,7 @@ public class BookMapperUtil {
         book.setBookSummary(bookRequest.getBookSummary());
         book.setPublisher(bookRequest.getPublisher());
         book.setImagesUrl(bookRequest.getImagesUrl());
+        book.setAddedDate(LocalDateTime.now());
         Optional<Author> authorOptional = authorRepository.findById(bookRequest.getAuthorId());
         if (authorOptional.isPresent()) {
             book.setAuthor(authorOptional.get());

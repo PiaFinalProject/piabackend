@@ -2,7 +2,9 @@ package com.teknokafalar.piabackend.dto.request;
 
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 
 @Data
 public class BookRequest {
@@ -21,5 +23,7 @@ public class BookRequest {
     private String imagesUrl;
     private Long authorId;
     private Long typeId;
-    private Date addedDate;
+    private LocalDateTime addedDate;
+
+
 }

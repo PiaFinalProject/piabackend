@@ -2,6 +2,7 @@ package com.teknokafalar.piabackend.service.concrete;
 
 import com.teknokafalar.piabackend.dto.request.TypePostRequest;
 import com.teknokafalar.piabackend.dto.response.TypeResponse;
+import com.teknokafalar.piabackend.entities.Author;
 import com.teknokafalar.piabackend.entities.Type;
 import com.teknokafalar.piabackend.repository.TypeRepository;
 import com.teknokafalar.piabackend.service.abstracts.TypeService;
@@ -27,6 +28,11 @@ public class TypeServiceImpl implements TypeService {
     @Override
     public List<Type> getType() {
         return repository.findAll();
+    }
+
+    @Override
+    public Type getTypeById(Long typeId) {
+        return this.repository.findById(typeId).get();
     }
 
     @Override

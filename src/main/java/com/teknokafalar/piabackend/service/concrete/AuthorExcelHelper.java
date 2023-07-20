@@ -90,6 +90,7 @@ public class AuthorExcelHelper {
             workbook.close();
 
             return authors;
+
         } catch (IOException e) {
             throw new RuntimeException("fail to parse Excel file: " + e.getMessage());
         }

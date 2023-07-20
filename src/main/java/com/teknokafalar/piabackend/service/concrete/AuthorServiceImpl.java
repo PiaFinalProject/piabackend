@@ -31,6 +31,11 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
+    public Author getAuthorById(Long authorId) {
+        return repository.findById(authorId).get();
+    }
+
+    @Override
     public AuthorResponse updateAuthor(AuthorPostRequest request, Long authorId) {
         Optional<Author> authorDb = this.repository.findById(authorId);
 
@@ -40,7 +45,7 @@ public class AuthorServiceImpl implements AuthorService {
             author = authorDb.get();
             author.setAbout(request.getAbout());
             author.setLastName(request.getLastName());
-            //author.setBirthday(request.getBirthday());
+            author.setImages(request.getImages());
             author.setFirstName(request.getFirstName());
             repository.save(author);
             return AuthorMapperUtil.toAuthorResponse(author);

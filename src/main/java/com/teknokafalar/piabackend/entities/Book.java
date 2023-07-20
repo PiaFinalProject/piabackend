@@ -17,29 +17,27 @@ public class Book {
 
 
     private String name;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "authorId", nullable = true)
+    private Author author;
 
-    private String year;
     @Lob
     @org.hibernate.annotations.Type(type = "org.hibernate.type.TextType")
     private String bookSummary;
 
-    private String publisher;
-
-    private String imagesUrl;
-
-    private LocalDateTime addedDate;
-
-    private double price;
-    private double stock;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "authorId", nullable = true)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Author author;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "typeId", nullable = true)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Type type;
+    private String year;
+    private String imagesUrl;
+
+    private double stock;
+
+    private double price;
+    private String publisher;
+    private LocalDateTime addedDate;
+
+
+
 
 }
