@@ -2,24 +2,17 @@ package com.teknokafalar.piabackend.config;
 
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -58,6 +51,13 @@ public class SecurityConfig {
                                 .antMatchers("/api/auth/**").permitAll()
                                 .antMatchers("/author/**").permitAll()
                                 .antMatchers("/type/**").permitAll()
+                                .antMatchers("/book/**").permitAll()
+                                .antMatchers("/cartItem/**").permitAll()
+                                .antMatchers("/cart/**").permitAll()
+                                .antMatchers("/comment/**").permitAll()
+                                .antMatchers("/users/**").permitAll()
+                                .antMatchers("/order/**").permitAll()
+                                .antMatchers("/api/**").permitAll()
                                 .antMatchers("/subscriber/**").permitAll()
                                 .antMatchers("/message/**").permitAll()
                                 .antMatchers(AUTH_WHITE_LIST).permitAll()

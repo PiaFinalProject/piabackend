@@ -1,7 +1,7 @@
 package com.teknokafalar.piabackend.util;
 
-import com.teknokafalar.piabackend.dto.AuthorPostRequest;
-import com.teknokafalar.piabackend.dto.AuthorResponse;
+import com.teknokafalar.piabackend.dto.request.AuthorPostRequest;
+import com.teknokafalar.piabackend.dto.response.AuthorResponse;
 import com.teknokafalar.piabackend.entities.Author;
 
 public class AuthorMapperUtil {
@@ -9,7 +9,7 @@ public class AuthorMapperUtil {
         Author author = new Author();
         author.setFirstName(request.getFirstName());
         author.setLastName(request.getLastName());
-        author.setBirthday(request.getBirthday());
+        //author.setBirthday(request.getBirthday());
         author.setAbout(request.getAbout());
 
         return author;
@@ -20,7 +20,7 @@ public class AuthorMapperUtil {
 
         response.setFirstName(author.getFirstName());
         response.setLastName(author.getLastName());
-        response.setBirthday(author.getBirthday());
+        //response.setBirthday(author.getBirthday());
         response.setAbout(author.getAbout());
 
         return response;

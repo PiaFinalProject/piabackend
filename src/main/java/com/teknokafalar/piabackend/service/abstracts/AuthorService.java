@@ -1,8 +1,7 @@
 package com.teknokafalar.piabackend.service.abstracts;
 
-import com.teknokafalar.piabackend.core.utilities.results.Result;
-import com.teknokafalar.piabackend.dto.AuthorPostRequest;
-import com.teknokafalar.piabackend.dto.AuthorResponse;
+import com.teknokafalar.piabackend.dto.request.AuthorPostRequest;
+import com.teknokafalar.piabackend.dto.response.AuthorResponse;
 import com.teknokafalar.piabackend.entities.Author;
 
 import java.util.List;

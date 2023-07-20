@@ -1,4 +1,4 @@
-package com.teknokafalar.piabackend.dto;
+package com.teknokafalar.piabackend.dto.response;
 
 import lombok.Data;
 
