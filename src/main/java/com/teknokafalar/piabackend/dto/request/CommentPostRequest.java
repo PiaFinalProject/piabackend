@@ -1,9 +1,9 @@
-package com.teknokafalar.piabackend.dto;
+package com.teknokafalar.piabackend.dto.request;
 
 import lombok.Data;
 
 @Data
-public class CommentResponse {
+public class CommentPostRequest {
     private String firstName;
     private String text;
     private String lastName;

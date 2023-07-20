@@ -1,20 +1,16 @@
 package com.teknokafalar.piabackend.service.abstracts;
 
-import com.teknokafalar.piabackend.dto.AuthorPostRequest;
-import com.teknokafalar.piabackend.dto.AuthorResponse;
-import com.teknokafalar.piabackend.dto.CommentPostRequest;
-import com.teknokafalar.piabackend.dto.CommentPostRequst;
-import com.teknokafalar.piabackend.dto.CommentResponse;
-import com.teknokafalar.piabackend.entities.Author;
-import com.teknokafalar.piabackend.entities.Comment;
-import org.springframework.boot.web.server.Cookie;
+import com.teknokafalar.piabackend.dto.request.CommentPostRequest;
+import com.teknokafalar.piabackend.dto.response.CommentResponse;
 
 import java.util.List;
 
 public interface CommentService {
 
-    List<Comment> getComment();
+    List<CommentResponse> getCommentResponses();
 
     CommentResponse postComment(CommentPostRequest comment);
+
+    List<CommentResponse> getCommentsByBookId(Long bookId);
 
 }

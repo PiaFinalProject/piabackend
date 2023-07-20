@@ -1,11 +1,9 @@
-package com.teknokafalar.piabackend.dto;
+package com.teknokafalar.piabackend.dto.request;
 
 import lombok.Data;
 
 @Data
-public class AuthorResponse {
-    private Long id;
-
+public class AuthorPostRequest {
     private String firstName;
     private String lastName;
     private String birthday;

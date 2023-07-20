@@ -1,9 +1,12 @@
-package com.teknokafalar.piabackend.dto;
+package com.teknokafalar.piabackend.dto.response;
 
 import lombok.Data;
 
 @Data
-public class BookPostRequest {
+public class BookResponse {
+    private double price;
+    private double stock;
+
     private String name;
 
     private String year;
